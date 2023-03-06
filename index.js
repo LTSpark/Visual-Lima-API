@@ -8,10 +8,12 @@ const app = express();
 app.use(cors());
 
 app.post("/aws-core", (req, res) => {
+  console.log(req.body);
   res.send(req.body);
 });
 
 app.post("/aws-core/data", (req, res) => {
+  console.log(req.body);
   res.send(req.body);
 });
 
