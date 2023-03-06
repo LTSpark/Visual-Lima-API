@@ -4,7 +4,7 @@ const express = require("express");
 // Initialize Express
 const app = express();
 
-app.use(cors);
+app.use(cors());
 
 app.post("/aws-core", (req, res) => {
   res.send(req.body)
