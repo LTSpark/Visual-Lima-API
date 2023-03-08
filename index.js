@@ -1,26 +1,37 @@
+require('dotenv').config();
+
 // Add Express
 const express = require("express");
-const cors = require("cors")
+const cors = require("cors");
+
+const { getLast, getAll, create } = require("./slot-service");
+const { mongooseConnection } = require("./config");
 
 // Initialize Express
 const app = express();
 
+mongooseConnection();
+
 app.use(cors());
-app.use(express.json())
+app.use(express.json());
 
-app.post("/aws-core", (req, res) => {
+app.post("/aws-core", async (req, res) => {
   console.log(req.body);
-  res.send(req.body);
+  res.send(await create(req.body));
 });
 
-app.post("/aws-core/data", (req, res) => {
+app.post("/aws-core/data", async (req, res) => {
   console.log(req.body);
-  res.send(req.body);
+  res.send(await create(req.body));
 });
 
-// Create GET request
-app.get("/", (req, res) => {
-  res.send("Express on Vercel");
+app.get("/slots/last", async (req, res) => {
+  console.log(getLast())
+  res.send(await getLast())
+})
+
+app.get("/slots", async (req, res) => {
+  res.send(await getAll());
 });
 
 // Initialize server
