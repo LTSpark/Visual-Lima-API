@@ -35,7 +35,7 @@ app.get("/slots", async (req, res) => {
 });
 
 // Initialize server
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Running on port 3000.");
 });
 
