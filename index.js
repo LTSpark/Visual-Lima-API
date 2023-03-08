@@ -26,7 +26,6 @@ app.post("/aws-core/data", async (req, res) => {
 });
 
 app.get("/slots/last", async (req, res) => {
-  console.log(getLast())
   res.send(await getLast())
 })
 
