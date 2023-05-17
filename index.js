@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 
-const { getLast, getAll, create } = require("./slot-service");
+const { getLast, getAll, create, viewStats } = require("./stats.service");
 const { mongooseConnection } = require("./config");
 
 // Initialize Express
@@ -15,27 +15,26 @@ mongooseConnection();
 app.use(cors());
 app.use(express.json());
 
-app.post("/aws-core", async (req, res) => {
+app.post("/stats", async (req, res) => {
   console.log(req.body);
   res.send(await create(req.body));
 });
 
-app.post("/aws-core/data", async (req, res) => {
-  console.log(req.body);
-  res.send(await create(req.body));
-});
-
-app.get("/slots/last", async (req, res) => {
+app.get("/stats/last", async (req, res) => {
   res.send(await getLast())
 })
 
-app.get("/slots", async (req, res) => {
+app.get("/stats", async (req, res) => {
   res.send(await getAll());
+});
+
+app.get("/stats/view", async (req, res) => {
+  res.send(await viewStats());
 });
 
 // Initialize server
 app.listen(process.env.PORT, () => {
-  console.log("Running on port 3000.");
+  console.log(`Running on port ${process.env.PORT}...`);
 });
 
 // Export the Express API

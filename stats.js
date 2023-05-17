@@ -1,10 +1,10 @@
 const {Schema, model} = require("mongoose");
 
-const slotSchema = Schema({
-    slots: {
-        type: Number
+const statsSchema = Schema({
+    experience: {
+        type: String
     },
-    action: {
+    user: {
         type: String
     },
     date: {
@@ -14,4 +14,4 @@ const slotSchema = Schema({
     versionKey: false
 });
 
-module.exports = model("Slot", slotSchema);
+module.exports = model("Stats", statsSchema);
